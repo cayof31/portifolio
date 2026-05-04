@@ -1,0 +1,29 @@
+# docker-compose.yml
+
+
+services:
+  # Define o serviço do nosso banco de dados. Você pode chamar de "db", "postgres", etc.
+  db:
+    image: postgres:15-alpine # Imagem oficial do Postgres, versão 15. Usar uma versão específica é uma boa prática.
+    restart: always # Reinicia o contêiner automaticamente se ele parar por algum motivo.
+    
+    # Variáveis de ambiente para configurar o banco de dados.
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: _X123a@ # Use uma senha segura aqui!
+      POSTGRES_DB: ma # Nome do banco de dados que será criado.
+      
+    # Mapeia a porta do contêiner para uma porta na sua máquina (HOST:CONTAINER).
+    # Usamos 5433 na máquina local para evitar conflitos com qualquer outro Postgres
+    # que possa estar rodando na porta padrão 5432.
+    ports:
+      - '5434:5432'
+      
+    # Garante que os dados do banco de dados persistam mesmo se o contêiner for removido.
+    # Isso é CRUCIAL para não perder seus dados toda vez que você reiniciar.
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+# Define o "volume nomeado" que usamos acima. O Docker gerencia essa pasta.
+volumes:
+  postgres-data:
