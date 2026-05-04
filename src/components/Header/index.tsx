@@ -46,8 +46,8 @@ const Header = ({ posts }: HeaderProps) => {
   
 
   return (
-    <header className="fixed top-0 left-0 w-full z-30 bg-transparent">
-      <nav className="relative max-w-5xl mx-auto py-8">
+    <header className="fixed top-0 left-0 w-full z-30 bg-transparent ">
+      <nav className="relative max-w-5xl mx-auto py-8 px-4">
         <span
           data-header-name-anchor
           aria-hidden="true"
