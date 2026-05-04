@@ -73,15 +73,15 @@ export default async function PostPage({ params }: PostPageProps) {
           >
             Posts
           </Link>
-          <h1 className="mt-5 text-5xl uppercase leading-[0.95] tracking-[0.02em] text-[--portfolio-muted] md:text-7xl">
+          <h1 className="mt-5 text-5xl uppercase leading-[0.95] tracking-[0.02em] text-(--portfolio-muted) md:text-7xl">
             {post.title}
           </h1>
-          <p className="mt-5 text-lg leading-8 text-[--portfolio-muted]">
+          <p className="mt-5 text-lg leading-8 text-(--portfolio-muted)">
             {post.description}
           </p>
           <time
             dateTime={post.date}
-            className="mt-5 block text-sm text-[--portfolio-muted]"
+            className="mt-5 block text-sm text-(--portfolio-muted)"
           >
             {formatPostDate(post.date)}
           </time>
@@ -102,7 +102,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <footer className="mt-8 border-t border-dashed border-white/15 pt-8">
           <Link
             href="/posts"
-            className="text-sm uppercase tracking-[0.18em] text-[--portfolio-muted]"
+            className="text-sm uppercase tracking-[0.18em] text-(--portfolio-muted)"
           >
             Voltar para posts
           </Link>

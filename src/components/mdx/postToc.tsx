@@ -7,7 +7,7 @@ export function PostToc({ items }: { items: TOCItemType[] }) {
 
   return (
     <aside className="mb-12 border-b border border-white/15 p-5">
-      <h2 className="text-lg uppercase tracking-[0.18em] text-[--portfolio-text]">
+      <h2 className="text-lg uppercase tracking-[0.18em] text-(--portfolio-text)">
         Sumario
       </h2>
 
@@ -20,7 +20,7 @@ export function PostToc({ items }: { items: TOCItemType[] }) {
             >
               <a
                 href={item.url}
-                className="text-sm text-[--portfolio-muted] transition-colors hover:text-[--portfolio-accent]"
+                className="text-sm text-(--portfolio-muted) transition-colors hover:text-(--portfolio-accent)"
               >
                 &bull; {item.title}
               </a>

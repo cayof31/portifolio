@@ -555,7 +555,7 @@ const Capa = ({ posts }: { posts: CapaPost[] }) => {
             transform: `translate3d(${typeof nameMotion.x === "number" ? `${nameMotion.x}px` : nameMotion.x}, ${typeof nameMotion.y === "number" ? `${nameMotion.y}px` : nameMotion.y}, 0) scale(${nameMotion.scale})`,
           }}
         >
-          <h1 className="justify-center flex-nowrap text-balance text-center text-[clamp(3.4rem,14vw,12rem)] leading-[0.88] tracking-[0.11em] text-[--portfolio-text] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.18),0_14px_46px_rgba(0,0,0,0.28)] gap-8 flex">
+          <h1 className="justify-center flex-nowrap text-balance text-center text-[clamp(3.4rem,14vw,12rem)] leading-[0.88] tracking-[0.11em] text-(--portfolio-text) uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.18),0_14px_46px_rgba(0,0,0,0.28)] gap-8 flex">
             CAYO <span style={{ display: nameMotion.imageDisplay }}> | </span>{" "}
             <span
               className="text-nowrap"
@@ -565,7 +565,7 @@ const Capa = ({ posts }: { posts: CapaPost[] }) => {
             </span>
           </h1>
           <p
-            className="mt-5 text-center text-[clamp(0.9rem,1.8vw,1.2rem)] tracking-[0.03em] text-[--portfolio-muted] transition-opacity duration-200"
+            className="mt-5 text-center text-[clamp(0.9rem,1.8vw,1.2rem)] tracking-[0.03em] text-(--portfolio-muted) transition-opacity duration-200"
             style={{ opacity: nameMotion.subtitleOpacity }}
           >
             Desenvolvedor Full-stack que transforma conceitos em produtos

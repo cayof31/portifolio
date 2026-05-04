@@ -75,9 +75,9 @@ const Header = ({ posts }: HeaderProps) => {
                 {item.type === 'link' ? (
                   <Link
                     href={item.path}
-                    className={`no-underline text-[1.2rem] transition-colors duration-300 hover:text-[--portfolio-text] ${
+                    className={`no-underline text-[1.2rem] transition-colors duration-300 hover:text-(--portfolio-text) ${
                       isActive(item.path)
-                        ? 'text-[--portfolio-text]'
+                        ? 'text-(--portfolio-text)'
                         : 'text-(--nav)'
                     }`}
                   >
@@ -88,18 +88,18 @@ const Header = ({ posts }: HeaderProps) => {
                     <button
                       type="button"
                       onClick={() => setIsPostsExpanded((prev) => !prev)}
-                      className="no-underline text-[1.2rem] transition-colors duration-300 hover:text-[--portfolio-text] text-(--nav)"
+                      className="no-underline text-[1.2rem] transition-colors duration-300 hover:text-(--portfolio-text) text-(--nav)"
                     >
                       {item.name}
                     </button>
 
                     {isPostsExpanded && (
-                      <ul className="absolute left-1/2 top-full z-40 mt-3 max-h-[56svh] w-[min(82vw,360px)] -translate-x-1/2 overflow-y-auto rounded-xl border border-[--portfolio-border] bg-[--portfolio-panel-strong] p-2 shadow-2xl">
+                      <ul className="absolute left-1/2 top-full z-40 mt-3 max-h-[56svh] w-[min(82vw,360px)] -translate-x-1/2 overflow-y-auto rounded-xl border border-(--portfolio-border) bg-(--portfolio-panel-strong) p-2 shadow-2xl ">
                         <li>
                           <Link
                             href="/posts"
                             onClick={() => setIsPostsExpanded(false)}
-                            className="group flex items-center gap-3 rounded-lg px-3 py-2 text-[--portfolio-text] opacity-90 transition-colors hover:bg-[--portfolio-panel] hover:opacity-100"
+                            className="group flex items-center gap-3 rounded-lg px-3 py-2 text-(--portfolio-text) opacity-90 transition-colors hover:bg-(--portfolio-panel) hover:opacity-100"
                           >
                             <span className="text-xs text-secondary/90 transition-colors group-hover:text-white">
                               00
@@ -112,7 +112,7 @@ const Header = ({ posts }: HeaderProps) => {
                             <Link
                               href={`/posts/${post.slug}`}
                               onClick={() => setIsPostsExpanded(false)}
-                              className="group flex items-center gap-3 rounded-lg px-3 py-2 text-[--portfolio-text] opacity-90 transition-colors hover:bg-[--portfolio-panel] hover:opacity-100"
+                              className="group flex items-center gap-3 rounded-lg px-3 py-2 text-(--portfolio-text) opacity-90 transition-colors hover:bg-(--portfolio-panel) hover:opacity-100"
                             >
                               <span className="text-xs text-secondary/90 transition-colors group-hover:text-white">
                                 {String(index + 1).padStart(2, '0')}
@@ -139,7 +139,7 @@ const Header = ({ posts }: HeaderProps) => {
 
           <button
             type="button"
-            className="md:hidden text-(--nav) hover:text-[--portfolio-text]"
+            className="md:hidden text-(--nav) hover:text-(--portfolio-text)"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
           >
@@ -152,14 +152,14 @@ const Header = ({ posts }: HeaderProps) => {
             <button
               type="button"
               aria-label="Fechar menu de navegação"
-              className="mobile-menu-backdrop fixed inset-0 z-40 bg-[--portfolio-backdrop] md:hidden"
+              className="mobile-menu-backdrop fixed inset-0 z-40 bg-(--portfolio-backdrop) md:hidden"
               onClick={() => {
                 setIsMenuOpen(false);
                 setIsPostsExpanded(false);
               }}
             />
 
-            <div className="mobile-menu-panel fixed inset-0 z-50 flex h-svh w-screen flex-col bg-[--portfolio-panel-strong] p-8 text-[--portfolio-text] md:hidden">
+            <div className="mobile-menu-panel fixed inset-0 z-50 flex h-svh w-screen flex-col bg-(--portfolio-panel-strong) p-8 text-(--portfolio-text) md:hidden">
               <div className="flex items-center justify-between">
                 <span className="font-heading text-2xl tracking-[0.08em] uppercase">Menu</span>
                 <div className="flex items-center gap-3">
@@ -171,7 +171,7 @@ const Header = ({ posts }: HeaderProps) => {
                       setIsPostsExpanded(false);
                     }}
                     aria-label="Fechar menu"
-                    className="rounded-md p-1 text-[--portfolio-text] opacity-90 transition-colors hover:bg-[--portfolio-panel] hover:opacity-100"
+                    className="rounded-md p-1 text-(--portfolio-text) opacity-90 transition-colors hover:bg-(--portfolio-panel) hover:opacity-100"
                   >
                     <X className="h-6 w-6" />
                   </button>
