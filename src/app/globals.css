@@ -154,6 +154,11 @@ All colors MUST be HSL.
       sans-serif;
     min-height: 100vh;
   }
+  @media (max-width: 768px) {
+     body {
+      padding: 0 1rem; /*1rem = 16px */
+     }
+    }
 
   h1,
   h2,
@@ -237,6 +242,7 @@ All colors MUST be HSL.
 
 @layer components {
   @media (max-width: 768px) {
+
     .scroll-color {
       scrollbar-color: black transparent;
       width: 0.6rem;

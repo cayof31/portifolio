@@ -547,7 +547,7 @@ const Capa = ({ posts }: { posts: CapaPost[] }) => {
         <span
           ref={headerAnchorRef}
           aria-hidden="true"
-          className="absolute left-[clamp(11.6rem,8vw,2.2rem)] top-10 h-1 w-1 md:top-12"
+          className="absolute left-[clamp(4.6rem,8vw,2.2rem)] top-10 h-1 w-1 md:top-12"
         />
         <div
           className="absolute left-0 top-0 w-[min(1024px,92vw)] -translate-x-1/2 -translate-y-1/2"
