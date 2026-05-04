@@ -1,0 +1,42 @@
+---
+title: "Alerta UFMT: Geoprocessamento e Crowdsourcing no Campus"
+date: "2026-05-04"
+description: "Como desenvolvi um app mobile para mapear e resolver problemas de infraestrutura na universidade usando PostGIS e React Native."
+# heroImageReel:
+#   - src: "/portfolio/alerta-ufmt-map.webp"
+#     alt: "Tela do mapa do Alerta UFMT mostrando os marcadores"
+#     caption: "Visão geral do mapa"
+#   - src: "/portfolio/alerta-ufmt-report.webp"
+#     alt: "Tela de cadastro de uma nova ocorrência no aplicativo"
+#     caption: "Registro de ocorrências"
+---
+
+# Transformando o Campus em uma Cidade Inteligente
+
+O **Alerta UFMT** é o projeto do meu TCC em Ciência da Computação, nascido de uma necessidade real: dar visibilidade aos problemas de infraestrutura do campus. Muitas vezes, ocorrências como vazamentos, problemas elétricos ou a presença de animais silvestres ficam restritas a chamados telefônicos isolados. 
+
+A ideia central da plataforma é utilizar o conceito de *Volunteered Geographic Information* (VGI) — ou crowdsourcing espacial. Ao permitir que qualquer aluno ou servidor registre problemas diretamente no mapa através do celular, criamos uma camada pública de transparência que impulsiona a resolução ágil por parte da administração.
+
+Para garantir a confiabilidade dos dados, o sistema restringe o acesso apenas a usuários autenticados com o e-mail institucional (`@sou.ufmt.br`).
+
+### A Engenharia por trás do Mapa
+
+O desenvolvimento do Alerta UFMT exigiu a construção de uma arquitetura robusta para lidar com dados espaciais e upload de mídia de forma eficiente. 
+
+- **Mobile First:** O frontend foi construído com React Native e Expo, garantindo uma experiência nativa fluida em Android e iOS, essencial para a captura precisa das coordenadas do GPS.
+- **Inteligência Geográfica:** No backend, utilizei Node.js e Prisma ORM conectados a um banco PostgreSQL com a extensão **PostGIS**. Isso permite o armazenamento de geometria real e consultas espaciais complexas.
+- **Armazenamento em Nuvem:** O upload das fotos das ocorrências é feito via stream diretamente para o Cloudinary, mantendo o banco de dados leve e as imagens otimizadas.
+- **Infraestrutura:** Todo o ambiente backend é conteinerizado com Docker, garantindo portabilidade e padronização.
+
+### Inteligência de Dados e Relatórios Gerenciais
+
+Uma das premissas mais fortes do projeto é não apenas mapear os problemas, mas fornecer ferramentas para a tomada de decisão da prefeitura do campus. O sistema conta com um módulo focado na geração de relatórios analíticos.
+
+Aproveitando a estrutura relacional e espacial do banco de dados, é possível extrair métricas valiosas para a administração, como:
+- **Mapas de Calor (Heatmaps):** Identificação visual das áreas com maior concentração de problemas estruturais crônicos.
+- **Métricas de Resolução (SLA):** Acompanhamento do tempo médio que o setor responsável leva para alterar o status de uma ocorrência de "Pendente" para "Resolvido".
+- **Filtros por Categoria:** Relatórios quantitativos que separam as demandas (ex: qual a porcentagem de falhas elétricas versus hidráulicas no último semestre).
+
+Esses relatórios transformam reclamações brutas em inteligência acionável, fechando o ciclo do crowdsourcing e otimizando a alocação de recursos da UFMT.
+
+> Mais do que um simples aplicativo de denúncias, o Alerta UFMT é um exercício prático de como a tecnologia e a engenharia de software podem ser aplicadas para melhorar o ecossistema universitário e fomentar a gestão participativa.

@@ -1,11 +1,28 @@
 "use client";
 
-import { ReactElement, use, useEffect, useRef, useState } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Instagram, InstagramIcon, Linkedin, Mail } from "lucide-react";
+import { Github, Instagram, Linkedin, Mail } from "lucide-react";
 import styles from "./capa.module.css";
+import ThemeToggle from "../ThemeToggle/theme-toggle";
+
+type CapaPost = {
+  slug: string;
+  title: string;
+  date: string;
+};
+
+type NameMotion = {
+  x: number | string;
+  y: number | string;
+  scale: number;
+  subtitleOpacity: number;
+  scrollCueOpacity: number;
+  imageDisplay: "none" | "block";
+};
+
 type PortfolioSection = {
   id: string;
   title: string;
@@ -418,10 +435,10 @@ const sections: PortfolioSection[] = [
   },
 ];
 
-const Capa = () => {
-  const [nameMotion, setNameMotion] = useState({
-    x: 0,
-    y: 0,
+const Capa = ({ posts }: { posts: CapaPost[] }) => {
+  const [nameMotion, setNameMotion] = useState<NameMotion>({
+    x: "50%",
+    y: "50svh",
     scale: 1,
     subtitleOpacity: 1,
     scrollCueOpacity: 1,
@@ -429,6 +446,7 @@ const Capa = () => {
   });
   const [visibleSections, setVisibleSections] = useState<number[]>([]);
   const rootRef = useRef<HTMLDivElement | null>(null);
+  const headerAnchorRef = useRef<HTMLSpanElement | null>(null);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
   const rafRef = useRef<number | null>(null);
 
@@ -443,34 +461,37 @@ const Capa = () => {
         0;
       const viewportHeight =
         window.visualViewport?.height ?? window.innerHeight;
+      const viewportWidth = window.visualViewport?.width ?? window.innerWidth;
 
-      if (viewportHeight <= 0) return;
+      if (viewportHeight <= 0 || viewportWidth <= 0) return;
 
       const parentRect = rootRef.current?.getBoundingClientRect();
       if (!parentRect) return;
 
-      const rawProgress = Math.min(scrollY / (viewportHeight * 0.9), 1);
+      const introDistance = Math.max(viewportHeight * 0.9, 360);
+      const rawProgress = Math.min(scrollY / introDistance, 1);
       const easedProgress = 1 - Math.pow(1 - rawProgress, 3);
-
-      const horizontalGutter = Math.max(
-        16,
-        Math.min(window.innerWidth * 0.06, 72),
-      );
-      const nameBlockWidth = Math.min(1024, window.innerWidth * 0.92);
 
       const startX = parentRect.width / 2;
       const startY = viewportHeight * 0.5;
-      const endX = 140;
-      const endY = 40;
+      const anchorRect = headerAnchorRef.current?.getBoundingClientRect();
+      const layerLeft = Math.max((viewportWidth - parentRect.width) / 2, 0);
+      const endX = anchorRect
+        ? anchorRect.left - layerLeft
+        : Math.min(Math.max(parentRect.width * 0.08, 56), 140);
+      const endY = anchorRect
+        ? anchorRect.top + anchorRect.height / 2
+        : Math.min(Math.max(viewportHeight * 0.08, 34), 56);
+      const compactScale = viewportWidth < 420 ? 0.32 : 0.22;
+      const subtitleOpacity = 1 - Math.min(rawProgress * 2.2, 1);
 
       setNameMotion({
         x: startX + (endX - startX) * easedProgress,
         y: startY + (endY - startY) * easedProgress,
-        scale: 1 - easedProgress * 0.78,
-        subtitleOpacity: 1 - Math.min(rawProgress * 2.2, 1),
+        scale: 1 - easedProgress * (1 - compactScale),
+        subtitleOpacity,
         scrollCueOpacity: 1 - Math.min(scrollY / (viewportHeight * 0.22), 1),
-        imageDisplay:
-          1 - Math.min(rawProgress * 2.2, 1) === 0 ? "block" : "none",
+        imageDisplay: subtitleOpacity <= 0.02 ? "block" : "none",
       });
     };
 
@@ -495,8 +516,8 @@ const Capa = () => {
       },
       {
         root: null,
-        rootMargin: "0px",
-        threshold: 0.35,
+        rootMargin: "0px 0px -12% 0px",
+        threshold: [0.05, 0.12],
       },
     );
 
@@ -522,14 +543,19 @@ const Capa = () => {
       ref={rootRef}
       className="relative isolate mx-auto w-full max-w-5xl overflow-x-clip"
     >
-      <div className="pointer-events-none fixed top-0 h-full w-full z-50 will-change-transform max-w-5xl">
+      <div className="pointer-events-none fixed left-1/2 top-0 z-30 h-full w-full max-w-5xl -translate-x-1/2 will-change-transform">
+        <span
+          ref={headerAnchorRef}
+          aria-hidden="true"
+          className="absolute left-[clamp(11.6rem,8vw,2.2rem)] top-10 h-1 w-1 md:top-12"
+        />
         <div
           className="absolute left-0 top-0 w-[min(1024px,92vw)] -translate-x-1/2 -translate-y-1/2"
           style={{
-            transform: `translate3d(${nameMotion.x}px, ${nameMotion.y}px, 0) scale(${nameMotion.scale} )`,
+            transform: `translate3d(${typeof nameMotion.x === "number" ? `${nameMotion.x}px` : nameMotion.x}, ${typeof nameMotion.y === "number" ? `${nameMotion.y}px` : nameMotion.y}, 0) scale(${nameMotion.scale})`,
           }}
         >
-          <h1 className="justify-center flex-nowrap text-balance text-center text-[clamp(3.4rem,14vw,12rem)] leading-[0.88] tracking-[0.11em] text-[#f8efe6] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.18),0_14px_46px_rgba(0,0,0,0.55)] gap-8 flex">
+          <h1 className="justify-center flex-nowrap text-balance text-center text-[clamp(3.4rem,14vw,12rem)] leading-[0.88] tracking-[0.11em] text-[--portfolio-text] uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.18),0_14px_46px_rgba(0,0,0,0.28)] gap-8 flex">
             CAYO <span style={{ display: nameMotion.imageDisplay }}> | </span>{" "}
             <span
               className="text-nowrap"
@@ -539,24 +565,32 @@ const Capa = () => {
             </span>
           </h1>
           <p
-            className="mt-5 text-center text-[clamp(0.9rem,1.8vw,1.2rem)] tracking-[0.03em] text-[rgba(238,218,200,0.9)] transition-opacity duration-200"
+            className="mt-5 text-center text-[clamp(0.9rem,1.8vw,1.2rem)] tracking-[0.03em] text-[--portfolio-muted] transition-opacity duration-200"
             style={{ opacity: nameMotion.subtitleOpacity }}
           >
             Desenvolvedor Full-stack que transforma conceitos em produtos
             digitais.
           </p>
         </div>
-        <div className="absolute top-4 right-0 items-center justify-center w-16 h-16 overflow-hidden rounded-full max-w-20">
-          <Image
-            src="/cayo_profile/profile9.webp"
-            width={200}
-            height={200}
-            alt="Logo"
-            className="object-cover w-full h-full scale-180 object-center"
-            style={{ display: nameMotion.imageDisplay }}
-          />
+        <div
+          className="absolute right-4 top-0 "
+          style={{ display: nameMotion.imageDisplay }}
+        >
+          <div className="flex-row flex items-center pointer-events-auto justify-center w-40 gap-4 py-4">
+            <ThemeToggle />
+            <div className="items-center  justify-center w-16 h-16 overflow-hidden rounded-full max-w-20">
+              <Image
+                src="/cayo_profile/profile9.webp"
+                width={200}
+                height={200}
+                alt="Logo"
+                className="object-cover w-full h-full scale-180 object-center"
+              />
+            </div>
+          </div>
         </div>
       </div>
+
       <div
         className="pointer-events-none fixed bottom-8 left-1/2 z-60 -translate-x-1/2 transition-opacity duration-200 md:bottom-10"
         style={{ opacity: nameMotion.scrollCueOpacity }}
@@ -569,10 +603,10 @@ const Capa = () => {
         </div>
       </div>
 
-      <div className="pointer-events-none fixed inset-0 z-1 bg-[#120b0b]">
-        <div className="absolute left-[-12vw] top-[-12vh] h-[38vh] w-[48vw] bg-[#d75643]/30 blur-[70px]" />
-        <div className="absolute bottom-[8vh] right-[-10vw] h-[32vh] w-[44vw] bg-[#897852]/30 blur-[82px]" />
-        <div className="absolute inset-0 mix-blend-soft-light opacity-20 bg-[radial-gradient(rgba(255,255,255,0.28)_0.5px,transparent_0.5px)] bg-size-[2px_2px]" />
+      <div className="pointer-events-none fixed inset-0 z-1 bg-[var(--portfolio-bg)] transition-colors duration-300">
+        <div className="absolute left-[-12vw] top-[-12vh] h-[38vh] w-[48vw] bg-[var(--portfolio-glow-a)] blur-[70px]" />
+        <div className="absolute bottom-[8vh] right-[-10vw] h-[32vh] w-[44vw] bg-[var(--portfolio-glow-b)] blur-[82px]" />
+        <div className="absolute inset-0 mix-blend-soft-light opacity-20 bg-[radial-gradient(var(--portfolio-grain)_0.5px,transparent_0.5px)] bg-size-[2px_2px]" />
       </div>
 
       <div className="relative z-10 flex flex-col">
@@ -592,7 +626,7 @@ const Capa = () => {
             <div className="mx-auto w-full max-w-7xl">
               <article
                 className={cn(
-                  "w-full max-w-none border-b border-dashed border-white/15 p-[clamp(1.4rem,3vw,2.2rem)] text-[#f8efe6] transition-[opacity,transform] duration-420 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                  "w-full max-w-none border-b border-dashed border-[var(--portfolio-border)] p-[clamp(1.4rem,3vw,2.2rem)] text-[var(--portfolio-text)] transition-[opacity,transform] duration-420 ease-[cubic-bezier(0.22,1,0.36,1)]",
                   visibleSections.includes(index)
                     ? "translate-y-0 scale-100 opacity-100"
                     : "translate-y-6 scale-[0.98] opacity-0",
@@ -604,7 +638,7 @@ const Capa = () => {
                 <h2 className="m-0 text-5xl leading-[0.95] tracking-[0.02em]">
                   {section.title}
                 </h2>
-                <p className="mt-4 max-w-[62ch] text-[clamp(0.96rem,2vw,1.16rem)] leading-[1.65] text-[rgba(246,234,223,0.92)]">
+                <p className="mt-4 max-w-[62ch] text-paragraph leading-[1.65] text-[var(--portfolio-muted)]">
                   {section.description}
                 </p>
                 <div className="grid gap-3 sm:grid-cols-2 pt-4">
@@ -614,7 +648,7 @@ const Capa = () => {
                       href={project.link}
                       target="_blank"
                       rel="noreferrer"
-                      className="group block rounded-xl border border-subtle p-4 transition-all duration-200 hover-bg"
+                      className="group block rounded-xl border border-[var(--portfolio-border)] bg-[var(--portfolio-panel)] p-4 transition-all duration-200 hover:bg-[var(--portfolio-panel-strong)]"
                     >
                       <div className="flex items-start justify-between gap-2">
                         <h3 className="font-medium text-2xl group-hover:underline underline-offset-2">
@@ -708,7 +742,37 @@ const Capa = () => {
             </div>
           </section>
         ))}
-
+        <section className="flex mx-auto w-full max-w-7xl">
+          <div className="w-full max-w-none border-b border-dashed border-[var(--portfolio-border)] p-[clamp(1.4rem,3vw,2.2rem)] text-[var(--portfolio-text)] transition-[opacity,transform] duration-420 ease-[cubic-bezier(0.22,1,0.36,1)]">
+            <Link href="/posts">
+              <h2 className="m-0 text-5xl leading-[0.95] tracking-[0.02em] text-[var(--portfolio-text)]">
+                Posts do Blog
+              </h2>
+            </Link>
+            <ol className="pt-4 ">
+              {posts.map((post, index) => (
+                <li
+                  key={index}
+                  className="mb-4 hover:border-b-2 border-primary-color"
+                >
+                  <Link
+                    className="group flex flex-col gap-0 sm:flex-row sm:items-center sm:gap-2 py-2 -mx-2 px-2 rounded-lg transition-colors"
+                    href={`/posts/${post.slug}`}
+                  >
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      <span className="text-primary-color text-pragraph font-medium leading-snug line-clamp-1">
+                        {post.title}
+                      </span>
+                    </div>
+                    <span className="text-gray-400 text-sm shrink-0 font-mono tabular-nums">
+                      {post.date}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
         <section className="flex  items-end pt-14 justify-center pb-6 md:pb-8">
           <div className="mx-auto w-full max-w-7xl">
             <p className="w-full max-w-none text-center text-[clamp(0.68rem,1.4vw,0.86rem)] uppercase tracking-[0.08em] text-[rgba(238,219,205,0.72)]">

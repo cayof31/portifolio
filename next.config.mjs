@@ -5,11 +5,7 @@ import { createMDX } from 'fumadocs-mdx/next';
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
-  output: 'export',
-  images: {
-    unoptimized: true,
-  },
-  allowedDevOrigins: ["192.168.1.24"],
+  allowedDevOrigins: ["192.168.1.6"],
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.resolve.fallback = {

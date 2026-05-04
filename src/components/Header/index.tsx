@@ -1,18 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X } from 'lucide-react';
+import { Menu, Moon, Sun, X } from 'lucide-react';
+import ThemeToggle from '../ThemeToggle/theme-toggle';
 
-type RitualNavItem = {
+type PostNavItem = {
   slug: string;
   title: string;
 };
 
 type HeaderProps = {
-  rituals: RitualNavItem[];
+  posts: PostNavItem[];
 };
 
 type HeaderLinkItem = {
@@ -21,59 +23,61 @@ type HeaderLinkItem = {
   path: string;
 };
 
-type HeaderRitualItem = {
-  type: 'rituals';
+type HeaderPostsItem = {
+  type: 'posts';
   name: string;
 };
 
-type HeaderNavItem = HeaderLinkItem | HeaderRitualItem;
+type HeaderNavItem = HeaderLinkItem | HeaderPostsItem;
 
 const navItems: HeaderNavItem[] = [
   { type: 'link', name: 'Início', path: '/' },
-  { type: 'link', name: 'Cronologia', path: '/cronologia' },
-  { type: 'rituals', name: 'Rituais' },
-  { type: 'link', name: 'Contato', path: '/Contato' },
+  { type: 'posts', name: 'Posts' },
 ];
 
-const Header = ({ rituals }: HeaderProps) => {
+const Header = ({ posts }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isRitualsExpanded, setIsRitualsExpanded] = useState(false);
+  const [isPostsExpanded, setIsPostsExpanded] = useState(false);
   const pathname = usePathname();
 
   const isActive = (path: string) => pathname === path;
 
+
+  
+
   return (
     <header className="fixed top-0 left-0 w-full z-30 bg-transparent">
-      <nav className="relative max-w-300 mx-auto px-8 py-8">
+      <nav className="relative max-w-5xl mx-auto py-8">
         <span
           data-header-name-anchor
           aria-hidden="true"
           className="pointer-events-none absolute left-20 top-[2.2rem] h-8 w-44 -translate-x-1/2 -translate-y-1/2 md:left-28 md:top-[2.8rem]"
         />
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between  overflow-hidden ">
           <Link
             href="/"
-            className="text-xl font-bold text-secondary no-underline tracking-[0.5px]"
+            className="text-xl font-bold text-secondary no-underline tracking-[0.5px] items-center justify-center w-16 h-16 overflow-hidden rounded-full max-w-20"
             aria-label="Ir para página inicial"
           >
             <Image
-              src="/variantes/9.png"
+              src="/cayo_profile/profile9.webp"
               alt="Logo"
               width={80}
               height={60}
-              className="inline-block mr-2"
+              className="object-cover w-full h-full scale-180 object-center"
             />
           </Link>
 
-          <ul className="hidden md:flex list-none gap-8">
+          <div className="hidden items-center gap-8 md:flex">
+          <ul className="flex list-none gap-8">
             {navItems.map((item) => (
-              <li key={item.type === 'link' ? item.path : 'rituais-desktop'} className={item.type === 'rituals' ? 'relative' : ''}>
+              <li key={item.type === 'link' ? item.path : 'posts-desktop'} className={item.type === 'posts' ? 'relative' : ''}>
                 {item.type === 'link' ? (
                   <Link
                     href={item.path}
-                    className={`no-underline text-[1.2rem] transition-colors duration-300 hover:text-white ${
+                    className={`no-underline text-[1.2rem] transition-colors duration-300 hover:text-[--portfolio-text] ${
                       isActive(item.path)
-                        ? 'text-white'
+                        ? 'text-[--portfolio-text]'
                         : 'text-(--nav)'
                     }`}
                   >
@@ -83,32 +87,44 @@ const Header = ({ rituals }: HeaderProps) => {
                   <>
                     <button
                       type="button"
-                      onClick={() => setIsRitualsExpanded((prev) => !prev)}
-                      className="no-underline text-[1.2rem] transition-colors duration-300 hover:text-white text-(--nav)"
+                      onClick={() => setIsPostsExpanded((prev) => !prev)}
+                      className="no-underline text-[1.2rem] transition-colors duration-300 hover:text-[--portfolio-text] text-(--nav)"
                     >
                       {item.name}
                     </button>
 
-                    {isRitualsExpanded && (
-                      <ul className="absolute left-1/2 top-full z-40 mt-3 max-h-[56svh] w-[min(82vw,360px)] -translate-x-1/2 overflow-y-auto rounded-xl border border-white/15 bg-black/95 p-2 shadow-2xl">
-                        {rituals.map((ritual, index) => (
-                          <li key={`desktop-${ritual.slug}`}>
+                    {isPostsExpanded && (
+                      <ul className="absolute left-1/2 top-full z-40 mt-3 max-h-[56svh] w-[min(82vw,360px)] -translate-x-1/2 overflow-y-auto rounded-xl border border-[--portfolio-border] bg-[--portfolio-panel-strong] p-2 shadow-2xl">
+                        <li>
+                          <Link
+                            href="/posts"
+                            onClick={() => setIsPostsExpanded(false)}
+                            className="group flex items-center gap-3 rounded-lg px-3 py-2 text-[--portfolio-text] opacity-90 transition-colors hover:bg-[--portfolio-panel] hover:opacity-100"
+                          >
+                            <span className="text-xs text-secondary/90 transition-colors group-hover:text-white">
+                              00
+                            </span>
+                            <span className="text-sm tracking-[0.05em] uppercase">Todos os posts</span>
+                          </Link>
+                        </li>
+                        {posts.map((post, index) => (
+                          <li key={`desktop-${post.slug}`}>
                             <Link
-                              href={`/rituais/${ritual.slug}`}
-                              onClick={() => setIsRitualsExpanded(false)}
-                              className="group flex items-center gap-3 rounded-lg px-3 py-2 text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                              href={`/posts/${post.slug}`}
+                              onClick={() => setIsPostsExpanded(false)}
+                              className="group flex items-center gap-3 rounded-lg px-3 py-2 text-[--portfolio-text] opacity-90 transition-colors hover:bg-[--portfolio-panel] hover:opacity-100"
                             >
                               <span className="text-xs text-secondary/90 transition-colors group-hover:text-white">
                                 {String(index + 1).padStart(2, '0')}
                               </span>
-                              <span className="text-sm tracking-[0.05em] uppercase">{ritual.title}</span>
+                              <span className="text-sm tracking-[0.05em] uppercase">{post.title}</span>
                             </Link>
                           </li>
                         ))}
 
-                        {rituals.length === 0 && (
+                        {posts.length === 0 && (
                           <li className="rounded-lg border border-white/10 px-3 py-2 text-sm text-white/70">
-                            Nenhum ritual disponível no momento.
+                            Nenhum post disponível no momento.
                           </li>
                         )}
                       </ul>
@@ -118,10 +134,12 @@ const Header = ({ rituals }: HeaderProps) => {
               </li>
             ))}
           </ul>
+          <ThemeToggle />
+          </div>
 
           <button
             type="button"
-            className="md:hidden text-(--nav) hover:text-white"
+            className="md:hidden text-(--nav) hover:text-[--portfolio-text]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
           >
@@ -134,32 +152,35 @@ const Header = ({ rituals }: HeaderProps) => {
             <button
               type="button"
               aria-label="Fechar menu de navegação"
-              className="mobile-menu-backdrop fixed inset-0 z-40 bg-black/70 md:hidden"
+              className="mobile-menu-backdrop fixed inset-0 z-40 bg-[--portfolio-backdrop] md:hidden"
               onClick={() => {
                 setIsMenuOpen(false);
-                setIsRitualsExpanded(false);
+                setIsPostsExpanded(false);
               }}
             />
 
-            <div className="mobile-menu-panel fixed inset-0 z-50 flex h-svh w-screen flex-col bg-black/95 p-8 text-white md:hidden">
+            <div className="mobile-menu-panel fixed inset-0 z-50 flex h-svh w-screen flex-col bg-[--portfolio-panel-strong] p-8 text-[--portfolio-text] md:hidden">
               <div className="flex items-center justify-between">
                 <span className="font-heading text-2xl tracking-[0.08em] uppercase">Menu</span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    setIsRitualsExpanded(false);
-                  }}
-                  aria-label="Fechar menu"
-                  className="rounded-md p-1 text-white/90 transition-colors hover:bg-white/10"
-                >
-                  <X className="h-6 w-6" />
-                </button>
+                <div className="flex items-center gap-3">
+                  <ThemeToggle />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsPostsExpanded(false);
+                    }}
+                    aria-label="Fechar menu"
+                    className="rounded-md p-1 text-[--portfolio-text] opacity-90 transition-colors hover:bg-[--portfolio-panel] hover:opacity-100"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
+                </div>
               </div>
 
               <ul className="mt-10 flex flex-1 list-none flex-col gap-4 overflow-y-auto pb-6">
                 {navItems.map((item) => (
-                  <li key={item.type === 'link' ? item.path : 'rituais-mobile'}>
+                  <li key={item.type === 'link' ? item.path : 'posts-mobile'}>
                     {item.type === 'link' ? (
                       <Link
                         href={item.path}
@@ -170,7 +191,7 @@ const Header = ({ rituals }: HeaderProps) => {
                         }`}
                         onClick={() => {
                           setIsMenuOpen(false);
-                          setIsRitualsExpanded(false);
+                          setIsPostsExpanded(false);
                         }}
                       >
                         {item.name}
@@ -179,35 +200,50 @@ const Header = ({ rituals }: HeaderProps) => {
                       <>
                         <button
                           type="button"
-                          onClick={() => setIsRitualsExpanded((prev) => !prev)}
+                          onClick={() => setIsPostsExpanded((prev) => !prev)}
                           className="block w-full rounded-xl px-4 py-3 text-left text-2xl tracking-[0.06em] uppercase transition-colors duration-300 hover:bg-white/10 hover:text-white text-(--nav)"
                         >
                           {item.name}
                         </button>
 
-                        {isRitualsExpanded && (
+                        {isPostsExpanded && (
                           <ul className="mt-2 space-y-1 rounded-xl border border-white/15 bg-white/5 p-2">
-                            {rituals.map((ritual, index) => (
-                              <li key={`mobile-${ritual.slug}`}>
+                            <li>
+                              <Link
+                                href="/posts"
+                                onClick={() => {
+                                  setIsMenuOpen(false);
+                                  setIsPostsExpanded(false);
+                                }}
+                                className="group flex items-center gap-3 rounded-lg px-3 py-2 text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                              >
+                                <span className="text-xs text-secondary/90 transition-colors group-hover:text-white">
+                                  00
+                                </span>
+                                <span className="text-sm tracking-[0.05em] uppercase">Todos os posts</span>
+                              </Link>
+                            </li>
+                            {posts.map((post, index) => (
+                              <li key={`mobile-${post.slug}`}>
                                 <Link
-                                  href={`/rituais/${ritual.slug}`}
+                                  href={`/posts/${post.slug}`}
                                   onClick={() => {
                                     setIsMenuOpen(false);
-                                    setIsRitualsExpanded(false);
+                                    setIsPostsExpanded(false);
                                   }}
                                   className="group flex items-center gap-3 rounded-lg px-3 py-2 text-white/90 transition-colors hover:bg-white/10 hover:text-white"
                                 >
                                   <span className="text-xs text-secondary/90 transition-colors group-hover:text-white">
                                     {String(index + 1).padStart(2, '0')}
                                   </span>
-                                  <span className="text-sm tracking-[0.05em] uppercase">{ritual.title}</span>
+                                  <span className="text-sm tracking-[0.05em] uppercase">{post.title}</span>
                                 </Link>
                               </li>
                             ))}
 
-                            {rituals.length === 0 && (
+                            {posts.length === 0 && (
                               <li className="rounded-lg border border-white/10 px-3 py-2 text-sm text-white/70">
-                                Nenhum ritual disponível no momento.
+                                Nenhum post disponível no momento.
                               </li>
                             )}
                           </ul>

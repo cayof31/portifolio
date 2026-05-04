@@ -4,10 +4,11 @@ import { notFound } from "next/navigation";
 import { DocsBody } from "fumadocs-ui/page";
 
 import { ContentSection } from "@/components/content/";
-import { HeroSection } from "@/components/mdx/hero-section";
+import { ImageReel } from "@/components/mdx/image-reel";
 import { formatPostDate, getPostBySlug, getPosts } from "@/lib/posts";
 import { normalizeSlug } from "@/lib/slug";
 import { getMDXComponents } from "@/mdx-components";
+import { PostToc } from "@/components/mdx/postToc";
 
 export const dynamic = "force-static";
 
@@ -59,63 +60,49 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const post = getPostBySlug(slug);
   if (!post) notFound();
-
+  const toc = post.page.data.toc ?? [];
   const MDX = post.page.data.body;
-  let heroSectionIndex = 0;
-  const HeroSectionWithReel = (
-    props: React.ComponentProps<typeof HeroSection>,
-  ) => {
-    const autoVariant: NonNullable<
-      React.ComponentProps<typeof HeroSection>["variant"]
-    > = heroSectionIndex % 2 === 0 ? "transparent" : "texture";
-    heroSectionIndex += 1;
-
-    return (
-      <HeroSection
-        {...props}
-        variant={props.variant ?? autoVariant}
-        imageReel={props.imageReel ?? post.heroImageReel}
-      />
-    );
-  };
 
   return (
-    <main className="min-h-screen px-5 py-28 md:px-12 lg:px-24">
-      <article className="mx-auto w-full max-w-4xl">
-        <header className="mb-12 border-b border-border/70 pb-8">
+    <main className="min-h-screen py-32">
+      <article className="mx-auto w-full max-w-5xl">
+        <header className="mb-12 border-b border-dashed border-white/15 pb-8">
           <Link
             href="/posts"
-            className="text-sm uppercase tracking-[0.18em] text-primary"
+            className="text-sm uppercase tracking-[0.18em] text-[#f5c2a3]"
           >
             Posts
           </Link>
-          <h1 className="mt-5 text-5xl uppercase leading-none text-foreground md:text-7xl">
+          <h1 className="mt-5 text-5xl uppercase leading-[0.95] tracking-[0.02em] text-[--portfolio-muted] md:text-7xl">
             {post.title}
           </h1>
-          <p className="mt-5 text-lg leading-8 text-muted-foreground">
+          <p className="mt-5 text-lg leading-8 text-[--portfolio-muted]">
             {post.description}
           </p>
           <time
             dateTime={post.date}
-            className="mt-5 block text-sm text-muted-foreground"
+            className="mt-5 block text-sm text-[--portfolio-muted]"
           >
             {formatPostDate(post.date)}
           </time>
         </header>
 
-        <DocsBody className="prose max-w-none dark:prose-invert">
+        <PostToc items={toc} />
+
+        <DocsBody className="portfolio-mdx prose dark:prose-invert">
           <MDX
             components={getMDXComponents({
-              HeroSection: HeroSectionWithReel,
               ContentSection,
+              ImageReel,
             })}
           />
+          <ImageReel images={post.heroImageReel} />
         </DocsBody>
 
-        <footer className="mt-14 border-t border-border/70 pt-8">
+        <footer className="mt-8 border-t border-dashed border-white/15 pt-8">
           <Link
             href="/posts"
-            className="text-sm uppercase tracking-[0.18em] text-primary"
+            className="text-sm uppercase tracking-[0.18em] text-[--portfolio-muted]"
           >
             Voltar para posts
           </Link>

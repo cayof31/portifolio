@@ -1,0 +1,163 @@
+---
+title: "Preservando Memória Ancestral com Arquitetura Web Moderna"
+date: "2026-05-04"
+description: "Como construir um acervo cultural digital com Next.js, MDX e Cloudflare: abordagem estática, escalável e sustentável para preservar conhecimento tradicional."
+# heroImageReel:
+#   - src: "/variantes/memory-architecture.webp"
+#     alt: "Arquitetura moderna para preservação cultural"
+#     caption: "Tecnologia a serviço da memória"
+#   - src: "/logos/ancestral-web.webp"
+#     alt: "Símbolo de integração entre tradição e web"
+#     caption: "Tradição + Inovação"
+---
+
+# Preservando Memória Ancestral com Arquitetura Web Moderna
+
+Este é um relato sobre a construção do **memoriaeancestralidade** — um acervo digital que documenta rituais e conhecimento cultural Xavante através de tecnologia web moderna, estática e completamente serverless.
+
+## O Desafio: Documentar Cultura em Escala
+
+Preservar conhecimento ancestral não é apenas sobre arquivar. É sobre:
+- Manter **fidelidade histórica** sem perder contexto
+- Garantir **acesso sustentável** mesmo com recursos limitados
+- Permitir **escalabilidade** conforme o acervo cresce
+- Oferecer **performance excepcional** em qualquer conexão
+
+Esses requisitos levaram a escolhas tecnológicas bem específicas.
+
+## Arquitetura: Por Que Estático + Serverless?
+
+### 1. **Export Estático do Next.js**
+
+Ao invés de um servidor Node.js rodando 24/7:
+
+```
+next build  →  /out  →  Cloudflare Pages
+```
+
+Cada página é um arquivo HTML/CSS/JS pré-compilado. Benefícios:
+
+- **Zero custo de compute**: Distribua CDN globalmente pelos 300+ data centers da Cloudflare
+- **Segurança máxima**: Sem servidor, sem superfície de ataque
+- **Performance**: ~50ms first paint em qualquer região
+
+### 2. **MDX para Conteúdo Estruturado**
+
+Cada ritual é um documento MDX em `src/content/rituais/[nome].mdx`:
+
+```mdx
+---
+title: COTIDIANO
+description: Rituais da vida diária Xavante
+tag: COTIDIANO
+---
+
+<HeroSection 
+  videoSrc="..." 
+  videoTitle="COTIDIANO 57" 
+  thumbnail="..."
+>
+  Narrativa do ritual aqui...
+</HeroSection>
+```
+
+Isso permite:
+- **Componentes React reativos** dentro de documentos
+- **Frontmatter estruturado** para metadados
+- **Type-safe**: TypeScript valida tudo em build time
+- **Versionável**: Git rastreia cada mudança cultural
+
+### 3. **Cloudflare R2 + Workers para Mídia**
+
+Vídeos e fotos não vivem no Git. Em vez disso:
+
+```typescript
+// CMS API - Cloudflare Worker
+
+export default {
+  async fetch(request: Request, env: Env) {
+    if (url.pathname === "/media") {
+      const s3 = new S3Client({
+        endpoint: `https://${ACCOUNT}.r2.cloudflarestorage.com`,
+        credentials: {
+          accessKeyId: env.R2_ACCESS_KEY_ID,
+          secretAccessKey: env.R2_SECRET_ACCESS_KEY,
+        },
+      });
+      
+      const result = await s3.send(
+        new ListObjectsV2Command({ Bucket: env.R2_BUCKET_NAME })
+      );
+      
+      return json(files);
+    }
+  }
+};
+```
+
+Cada vez que o site estático precisa listar mídia:
+1. Faz requisição CORS para o Worker
+2. Worker query o R2 (storage S3-compatível)
+3. Cache automático por 1 hora
+
+Custo: **~$0.015 por GB armazenado**. Para um acervo de 500GB, **~$8/mês**.
+
+## A Estrutura CSS: Tailwind + Radix UI
+
+Para manter consistência visual sem duplicação:
+
+- **Tailwind CSS**: Utility-first, zero CSS customizado
+- **Radix UI**: Componentes acessíveis e sem opinião estética
+- **CSS Modules**: Escopo local para variações específicas (ex: `cronologia.module.css`)
+
+Resultado: componentes reutilizáveis que crescem com o acervo.
+
+## Pipeline de Build
+
+```bash
+npm run build
+
+[1] Processa arquivos MDX em src/content/rituais/
+[2] Gera routes estáticas para /rituais/[slug]
+[3] Compila Tailwind + TypeScript
+[4] Exporta tudo para /out
+[5] Ready para deploy em Cloudflare Pages
+```
+
+Tempo total: **~30 segundos**. Replicável, determinístico, versionável.
+
+## Lições Aprendidas
+
+### ✓ Faz sentido fazer estático quando:
+- Conteúdo muda em cadência semanal ou mensal
+- Performance e custo são críticos
+- Segurança é prioridade
+- Você tem um workflow de publicação previsível
+
+### ✗ Não faz sentido quando:
+- Precisa de interação em tempo real (chats, notificações)
+- Conteúdo muda a cada segundo
+- Você quer CRUD dinâmico direto no site
+
+### ⚠ Desafios descobertos:
+1. **CMS desacoplado**: Admin fica separado do código principal
+2. **Preview local**: Precisa rodar `npm run dev` para testar mudanças
+3. **Build grande**: Com 50+ rituais, o build vai aumentar
+
+## Por Que Isso Importa para Portfólio
+
+Este projeto responde questões reais:
+
+- **Decisões arquiteturais**: Por que escolher estático? Quando serverless faz sentido?
+- **Full-stack prático**: TypeScript, React, Workers, S3, infraestrutura replicável
+- **Performance production**: Benchmarks, CDN, cache invalidation
+- **Cultural tech**: Usar tecnologia para preservar, não substituir
+- **Escalabilidade de custo**: Cresce em conteúdo, não em infrastructure bill
+
+---
+
+Este é o tipo de projeto que leva tempo, exige decisões conscientes, mas prova que tecnologia pode servir a propósitos maiores que SaaS genéricos.
+
+**Deployed em**: [memoriaeancestralidade.com.br](https://memoriaeancestralidade.com.br)  
+**Repositório**: GitHub (privado)   
+**Stack**: Next.js 15 + TypeScript + Tailwind + Cloudflare Pages + R2 + Workers

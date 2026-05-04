@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
 /* ---break---
 */
 @custom-variant dark (&:is(.dark *));
@@ -154,39 +155,6 @@ All colors MUST be HSL.
     min-height: 100vh;
   }
 
-  /* Estiliza todas as legendas dos vídeos da página */
-  video::cue {
-    color: #ffffff; /* Texto amarelo */
-    background-color: rgba(0, 0, 0, 0.8); /* Fundo preto 80% */
-    width: 100%;
-    height: auto;
-    /* font-size: auto;  */
-    line-height: 1;
-    padding: 0;
-    margin: 1px;
-    border: 1px solid black;
-    /* font-family: 'Inter', sans-serif; */
-    border-radius: 1.6rem;
-  }
-  video:fullscreen::cue {
-    font-size: 2rem;
-    line-height: 1;
-  }
-
-  video:-webkit-full-screen::cue {
-    font-size: 2rem;
-    line-height: 1;
-  }
-
-  .page-texture {
-    background-color: hsl(var(--background));
-    background-image:
-      /* linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.1)), */ url("/m_a_1_3x.webp");
-    background-repeat: repeat;
-    background-position: center top;
-    background-size: 1680px auto;
-  }
-
   h1,
   h2,
   h3,
@@ -268,19 +236,6 @@ All colors MUST be HSL.
 }
 
 @layer components {
-  .chronology-section {
-    position: relative;
-    height: 100vh;
-    min-height: 100vh;
-    padding: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-  }
-
   @media (max-width: 768px) {
     .scroll-color {
       scrollbar-color: black transparent;
@@ -302,75 +257,6 @@ All colors MUST be HSL.
     .scroll-color::-webkit-scrollbar {
       -webkit-appearance: none; /* Desliga o comportamento nativo */
     }
-  }
-  .chronology-section[data-variant="texture"] {
-    overflow: visible;
-  }
-
-  .chronology-section[data-variant="texture"]::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image: url("/section_backtexture_back2x.webp");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
-
-  .chronology-section__grid {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 1200px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: center;
-    padding-inline: 2rem;
-    text-align: center;
-  }
-
-  .chronology-section__media {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    aspect-ratio: 16 / 9;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  }
-
-  .chronology-section__embed {
-    width: 100%;
-    height: 100%;
-    border: none;
-    object-fit: contain;
-  }
-
-  .chronology-section__copy {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.25rem;
-  }
-
-  .chronology-section__title {
-    font-size: clamp(2.5rem, 3vw, 3.2rem);
-    color: hsl(var(--primary));
-    line-height: 1.2;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  .chronology-section__description {
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    color: hsl(var(--foreground));
-    line-height: 1.8;
-    opacity: 0.85;
   }
 
   @media (min-width: 768px) {
@@ -446,10 +332,8 @@ All colors MUST be HSL.
 */
 
 :root {
-  --background: oklch(0.145 0 0);
-  /* --background: oklch(1 0 0); */
-  /* --foreground: oklch(0.145 0 0); */
-  --foreground: oklch(100% 0.00011 271.152);
+  --background: oklch(0.94 0.022 67);
+  --foreground: oklch(0.23 0.03 38);
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -483,6 +367,18 @@ All colors MUST be HSL.
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --nav: oklch(43% 0.13 32);
+  --portfolio-bg: #f4e8dc;
+  --portfolio-text: #241817;
+  --portfolio-muted: rgba(45, 29, 26, 0.76);
+  --portfolio-accent: #9e3f32;
+  --portfolio-border: rgba(64, 37, 31, 0.18);
+  --portfolio-panel: rgba(255, 250, 244, 0.46);
+  --portfolio-panel-strong: rgba(255, 250, 244, 0.94);
+  --portfolio-backdrop: rgba(36, 24, 23, 0.36);
+  --portfolio-glow-a: rgba(214, 86, 67, 0.22);
+  --portfolio-glow-b: rgba(191, 151, 82, 0.28);
+  --portfolio-grain: rgba(69, 42, 35, 0.18);
 }
 
 /* ---break---
@@ -520,4 +416,83 @@ All colors MUST be HSL.
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --nav: oklch(53.045% 0.19887 27.818);
+  --portfolio-bg: #120b0b;
+  --portfolio-text: #f8efe6;
+  --portfolio-muted: rgba(246, 234, 223, 0.86);
+  --portfolio-accent: #f5c2a3;
+  --portfolio-border: rgba(255, 255, 255, 0.15);
+  --portfolio-panel: rgba(255, 255, 255, 0.08);
+  --portfolio-panel-strong: rgba(0, 0, 0, 0.95);
+  --portfolio-backdrop: rgba(0, 0, 0, 0.7);
+  --portfolio-glow-a: rgba(215, 86, 67, 0.3);
+  --portfolio-glow-b: rgba(137, 120, 82, 0.3);
+  --portfolio-grain: rgba(255, 255, 255, 0.28);
+}
+
+@layer components {
+  .portfolio-mdx {
+    width: 100%;
+    max-width: none;
+    /* color: white; */
+    --tw-prose-body: rgba(246, 234, 223, 0.86);
+    --tw-prose-headings: var(--portfolio-text);
+    --tw-prose-links: var(--portfolio-accent);
+    --tw-prose-bold: var(--portfolio-text);
+    --tw-prose-counters: rgba(238, 219, 205, 0.72);
+    --tw-prose-bullets: rgba(245, 194, 163, 0.75);
+    --tw-prose-hr: rgba(255, 255, 255, 0.15);
+    --tw-prose-quotes: rgba(246, 234, 223, 0.78);
+    --tw-prose-quote-borders: #fad5b53d;
+    --tw-prose-code: #f5c2a3;
+  }
+
+  .portfolio-mdx :not(pre) > code {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    color: #f5c2a3;
+    padding: 0.12rem 0.35rem;
+    border-radius: 0.35rem;
+    font-size: 0.92em;
+  }
+
+  .portfolio-mdx pre:not(.shiki *) {
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.38);
+    padding: 1rem;
+  }
+
+  .portfolio-mdx pre:not(.shiki *) code {
+    border: 0;
+    background: transparent;
+    padding: 0;
+  }
+
+  .portfolio-mdx figure.shiki {
+    margin: 1.8rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    background: rgba(0, 0, 0, 0.42);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.26);
+  }
+
+  .portfolio-mdx figure.shiki pre {
+    margin: 0;
+    border: 0;
+    background: transparent;
+    padding: 0;
+  }
+
+  .portfolio-mdx figure.shiki code {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .portfolio-mdx hr {
+    border-top: 1px dashed rgba(255, 255, 255, 0.15);
+  }
 }
