@@ -39,7 +39,7 @@ export default function Footer() {
         <div>
           <h3 className="text-[1.15rem] text-primary mb-4">Contato</h3>
           <p className="text-muted-foreground text-[0.95rem] leading-[1.7] no-underline">
-            Portifolio@email.com
+            Portfolio@email.com
           </p>
         </div>
       </div>

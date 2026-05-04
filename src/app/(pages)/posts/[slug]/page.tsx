@@ -30,12 +30,12 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "Post nao encontrado | Portifolio",
+      title: "Post nao encontrado | Portfolio",
     };
   }
 
   return {
-    title: `${post.title} | Portifolio`,
+    title: `${post.title} | Portfolio`,
     description: post.description,
     alternates: {
       canonical: post.href,

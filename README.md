@@ -1,4 +1,4 @@
-# Portifolio
+# Portfolio
 
 ## Getting Started
 
@@ -38,8 +38,8 @@ O admin em `public/admin/index.html` agora pode chamar uma API externa.
 ### 1. Criar Worker
 
 ```bash
-npx wrangler init Portifolio-cms-api --no-deploy
-cd Portifolio-cms-api
+npx wrangler init Portfolio-cms-api --no-deploy
+cd Portfolio-cms-api
 npm install @aws-sdk/client-s3
 ```
 
@@ -133,8 +133,8 @@ npx wrangler deploy
 
 No admin (`/admin`), use um destes formatos:
 
-- `https://seu-dominio/admin?cmsApiBaseUrl=https://Portifolio-cms-api.seu-subdominio.workers.dev`
-- ou salve no navegador: `localStorage.setItem("CMS_API_BASE_URL", "https://Portifolio-cms-api.seu-subdominio.workers.dev")`
+- `https://seu-dominio/admin?cmsApiBaseUrl=https://Portfolio-cms-api.seu-subdominio.workers.dev`
+- ou salve no navegador: `localStorage.setItem("CMS_API_BASE_URL", "https://Portfolio-cms-api.seu-subdominio.workers.dev")`
 
 Com isso, o front publico continua estatico e a API fica isolada no Worker.
 

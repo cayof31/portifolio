@@ -7,8 +7,8 @@ import { PostsList } from "./posts-list";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Posts | Portifolio",
-  description: "Textos, relatos e registros publicados no portifolio.",
+  title: "Posts | Portfolio",
+  description: "Textos, relatos e registros publicados no portfolio.",
 };
 
 export default async function PostsPage() {

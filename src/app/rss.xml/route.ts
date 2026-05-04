@@ -33,8 +33,8 @@ export function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0">
       <channel>
-        <title>Portifolio - Posts</title>
-        <description>Textos publicados no portifolio.</description>
+        <title>Portfolio - Posts</title>
+        <description>Textos publicados no portfolio.</description>
         <link>${escapeXml(siteUrl)}</link>
         ${items}
       </channel>
