@@ -5,7 +5,8 @@ import { DocsBody } from "fumadocs-ui/page";
 
 import { ContentSection } from "@/components/content/";
 import { ImageReel } from "@/components/mdx/image-reel";
-import { formatPostDate, getPostBySlug, getPosts } from "@/lib/posts";
+import { formatPostDate } from "@/lib/date";
+import { getPostBySlug, getPosts } from "@/lib/posts";
 import { normalizeSlug } from "@/lib/slug";
 import { getMDXComponents } from "@/mdx-components";
 import { PostToc } from "@/components/mdx/postToc";
@@ -69,7 +70,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <header className="mb-12 border-b border-dashed border-white/15 pb-8">
           <Link
             href="/posts"
-            className="text-sm uppercase tracking-[0.18em] text-[#f5c2a3]"
+            className="text-sm uppercase tracking-[0.18em] text-(--portfolio-accent)"
           >
             Posts
           </Link>

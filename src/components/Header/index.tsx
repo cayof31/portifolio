@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, Moon, Sun, X } from 'lucide-react';
+import { ChevronDown, ChevronUp, Menu, X } from 'lucide-react';
 import ThemeToggle from '../ThemeToggle/theme-toggle';
+import { ToggleGroup } from '@radix-ui/react-toggle-group';
 
 type PostNavItem = {
   slug: string;
@@ -53,7 +53,7 @@ const Header = ({ posts }: HeaderProps) => {
           aria-hidden="true"
           className="pointer-events-none absolute left-20 top-[2.2rem] h-8 w-44 -translate-x-1/2 -translate-y-1/2 md:left-28 md:top-[2.8rem]"
         />
-        <div className="flex items-center justify-between  overflow-hidden ">
+        <div className="flex items-center justify-between overflow-visible">
           <Link
             href="/"
             className="text-xl font-bold text-secondary no-underline tracking-[0.5px] items-center justify-center w-16 h-16 overflow-hidden rounded-full max-w-20"
@@ -94,7 +94,7 @@ const Header = ({ posts }: HeaderProps) => {
                     </button>
 
                     {isPostsExpanded && (
-                      <ul className="absolute left-1/2 top-full z-40 mt-3 max-h-[56svh] w-[min(82vw,360px)] -translate-x-1/2 overflow-y-auto rounded-xl border border-(--portfolio-border) bg-(--portfolio-panel-strong) p-2 shadow-2xl ">
+                      <ul className="absolute left-1/2 top-full z-50 mt-3 max-h-[56svh] w-[min(82vw,360px)] -translate-x-1/2 overflow-y-auto rounded-xl border border-(--portfolio-border) bg-(--portfolio-panel-strong) p-2 shadow-2xl ">
                         <li>
                           <Link
                             href="/posts"
@@ -184,9 +184,9 @@ const Header = ({ posts }: HeaderProps) => {
                     {item.type === 'link' ? (
                       <Link
                         href={item.path}
-                        className={`block rounded-xl px-4 py-3 no-underline text-2xl tracking-[0.06em] uppercase transition-colors duration-300 hover:bg-white/10 hover:text-white ${
+                        className={`block rounded-xl px-4 py-3 no-underline text-2xl tracking-[0.06em] uppercase transition-colors duration-300 hover:bg-white/10 hover:text-(--portfolio-text) ${
                           isActive(item.path)
-                            ? 'bg-white/10 text-white'
+                            ? 'bg-white/10 text-(--portfolio-text)' 
                             : 'text-(--nav)'
                         }`}
                         onClick={() => {
@@ -201,9 +201,9 @@ const Header = ({ posts }: HeaderProps) => {
                         <button
                           type="button"
                           onClick={() => setIsPostsExpanded((prev) => !prev)}
-                          className="block w-full rounded-xl px-4 py-3 text-left text-2xl tracking-[0.06em] uppercase transition-colors duration-300 hover:bg-white/10 hover:text-white text-(--nav)"
+                          className="w-full rounded-xl px-4 py-3 text-left flex flex-row text-2xl tracking-[0.06em] uppercase transition-colors duration-300 hover:bg-white/10 hover:text-(--portfolio-text) text-(--nav)"
                         >
-                          {item.name}
+                          {item.name} {isPostsExpanded ? <ChevronUp/> : <ChevronDown/>} 
                         </button>
 
                         {isPostsExpanded && (
@@ -215,9 +215,9 @@ const Header = ({ posts }: HeaderProps) => {
                                   setIsMenuOpen(false);
                                   setIsPostsExpanded(false);
                                 }}
-                                className="group flex items-center gap-3 rounded-lg px-3 py-2 text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                                className="group flex items-center gap-3 rounded-lg px-3 py-2 text-(--portfolio-text)/90 transition-colors hover:bg-white/10 hover:text-(--portfolio-text)"
                               >
-                                <span className="text-xs text-secondary/90 transition-colors group-hover:text-white">
+                                <span className="text-xs text-secondary/90 transition-colors group-hover:text-(--portfolio-text)">
                                   00
                                 </span>
                                 <span className="text-sm tracking-[0.05em] uppercase">Todos os posts</span>
@@ -231,9 +231,9 @@ const Header = ({ posts }: HeaderProps) => {
                                     setIsMenuOpen(false);
                                     setIsPostsExpanded(false);
                                   }}
-                                  className="group flex items-center gap-3 rounded-lg px-3 py-2 text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                                  className="group flex items-center gap-3 rounded-lg px-3 py-2 text-(--portfolio-text)/90 transition-colors hover:bg-white/10 hover:text-(--portfolio-text)"
                                 >
-                                  <span className="text-xs text-secondary/90 transition-colors group-hover:text-white">
+                                  <span className="text-xs text-secondary/90 transition-colors group-hover:text-(--portfolio-text)">
                                     {String(index + 1).padStart(2, '0')}
                                   </span>
                                   <span className="text-sm tracking-[0.05em] uppercase">{post.title}</span>
@@ -242,7 +242,7 @@ const Header = ({ posts }: HeaderProps) => {
                             ))}
 
                             {posts.length === 0 && (
-                              <li className="rounded-lg border border-white/10 px-3 py-2 text-sm text-white/70">
+                              <li className="rounded-lg border border-white/10 px-3 py-2 text-sm text-(--portfolio-text)/70">
                                 Nenhum post disponível no momento.
                               </li>
                             )}

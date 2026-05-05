@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-import { formatPostDate } from "@/lib/posts";
+import { formatPostDate } from "@/lib/date";
 
 const POSTS_PER_PAGE = 6;
 
@@ -44,10 +44,10 @@ export function PostsList({ posts }: { posts: PostSummary[] }) {
                 >
                   {formatPostDate(post.date)}
                 </time>
-                <h2 className="mt-3 text-3xl uppercase leading-tight text-[#f8efe6] transition-colors group-hover:text-[#f5c2a3] md:text-4xl">
+                <h2 className="mt-3 text-3xl uppercase leading-tight text-(--portfolio-text) transition-colors group-hover:text-(--portfolio-accent) md:text-4xl">
                   {post.title}
                 </h2>
-                <p className="mt-3 max-w-3xl text-base leading-7 text-[rgba(246,234,223,0.82)] md:text-lg">
+                <p className="mt-3 max-w-3xl text-base leading-7 text-(--portfolio-muted) md:text-lg">
                   {post.description}
                 </p>
               </Link>
@@ -65,7 +65,7 @@ export function PostsList({ posts }: { posts: PostSummary[] }) {
           {safePage > 1 ? (
             <Link
               href={`/posts?page=${safePage - 1}`}
-              className="text-sm uppercase tracking-[0.18em] text-[#f5c2a3]"
+              className="text-sm uppercase tracking-[0.18em] text-(--portfolio-accent)"
             >
               Posts recentes
             </Link>
@@ -73,14 +73,14 @@ export function PostsList({ posts }: { posts: PostSummary[] }) {
             <span />
           )}
 
-          <span className="text-sm text-[rgba(238,219,205,0.72)]">
+          <span className="text-sm text-(--portfolio-muted)">
             Pagina {safePage} de {totalPages}
           </span>
 
           {safePage < totalPages ? (
             <Link
               href={`/posts?page=${safePage + 1}`}
-              className="text-sm uppercase tracking-[0.18em] text-[#f5c2a3]"
+              className="text-sm uppercase tracking-[0.18em] text-(--portfolio-accent)"
             >
               Posts antigos
             </Link>

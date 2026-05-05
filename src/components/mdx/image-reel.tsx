@@ -50,7 +50,7 @@ export function ImageReel({ images }: { images?: ImageReelItem[] }) {
           type="button"
           onClick={() => scrollImageReel("left")}
           aria-label="Rolar imagens para a esquerda"
-          className="absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/70 px-3 py-2 text-2xl text-[#f8efe6] transition-colors hover:bg-black md:block"
+          className="absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/70 px-3 py-2 text-2xl text-(--portfolio-accent) transition-colors hover:bg-black md:block"
         >
           {"<"}
         </button>
@@ -92,7 +92,7 @@ export function ImageReel({ images }: { images?: ImageReelItem[] }) {
           type="button"
           onClick={() => scrollImageReel("right")}
           aria-label="Rolar imagens para a direita"
-          className="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/70 px-3 py-2 text-2xl text-[#f8efe6] transition-colors hover:bg-black md:block"
+          className="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-black/70 px-3 py-2 text-2xl text-(--portfolio-accent) transition-colors hover:bg-black md:block"
         >
           {">"}
         </button>
