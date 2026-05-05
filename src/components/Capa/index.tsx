@@ -550,9 +550,9 @@ const Capa = ({ posts }: { posts: CapaPost[] }) => {
           className="absolute left-[clamp(7.1rem,8.6vw,2.2rem)] md:left-[clamp(11.6rem,8.6vw,2.2rem)] top-10 h-1 w-1 md:top-12"
         />
         <div
-          className="absolute left-0 top-0 w-[min(1024px,92vw)] -translate-x-1/2 -translate-y-1/2"
+          className="absolute left-0 top-0 w-[min(1024px,92vw)]"
           style={{
-            transform: `translate3d(${typeof nameMotion.x === "number" ? `${nameMotion.x}px` : nameMotion.x}, ${typeof nameMotion.y === "number" ? `${nameMotion.y}px` : nameMotion.y}, 0) scale(${nameMotion.scale})`,
+            transform: `translate3d(${typeof nameMotion.x === "number" ? `${nameMotion.x}px` : nameMotion.x}, ${typeof nameMotion.y === "number" ? `${nameMotion.y}px` : nameMotion.y}, 0) translate(-50%, -50%) scale(${nameMotion.scale})`,
           }}
         >
           <h1 className="justify-center flex-nowrap text-balance text-center text-[clamp(3.4rem,14vw,12rem)] leading-[0.88] tracking-[0.11em] text-(--portfolio-text) uppercase [text-shadow:0_1px_0_rgba(255,255,255,0.18),0_14px_46px_rgba(0,0,0,0.28)] gap-8 flex">

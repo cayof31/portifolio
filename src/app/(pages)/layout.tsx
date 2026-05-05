@@ -22,7 +22,7 @@ export default function RootLayout({
         <div className="absolute bottom-[8vh] right-[-10vw] h-[32vh] w-[44vw] bg-[var(--portfolio-glow-b)] blur-[82px]" />
         <div className="absolute inset-0 bg-[radial-gradient(var(--portfolio-grain)_0.5px,transparent_0.5px)] bg-size-[2px_2px] opacity-20 mix-blend-soft-light" />
       </div>
-      <div className="relative z-10">
+      <div className="relative z-10 mx-auto">
         <Header posts={posts} />
         {children}
       </div>
