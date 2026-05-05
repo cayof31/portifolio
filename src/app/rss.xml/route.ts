@@ -1,4 +1,5 @@
 import { getPosts } from "@/lib/posts";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -12,12 +13,11 @@ function escapeXml(value: string): string {
 }
 
 export function GET() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const posts = getPosts();
 
   const items = posts
     .map((post) => {
-      const url = `${siteUrl}${post.href}`;
+      const url = absoluteUrl(post.href);
 
       return `
         <item>
@@ -33,9 +33,9 @@ export function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0">
       <channel>
-        <title>Portfolio - Posts</title>
-        <description>Textos publicados no portfolio.</description>
-        <link>${escapeXml(siteUrl)}</link>
+        <title>${escapeXml(`${siteConfig.name} - Posts`)}</title>
+        <description>${escapeXml("Textos, relatos tecnicos e registros de construcao publicados por Cayo Felipe.")}</description>
+        <link>${escapeXml(absoluteUrl("/posts"))}</link>
         ${items}
       </channel>
     </rss>`;

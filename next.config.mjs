@@ -6,6 +6,9 @@ import { createMDX } from 'fumadocs-mdx/next';
 const config = {
   reactStrictMode: true,
   allowedDevOrigins: ["192.168.1.24"],
+  turbopack: {
+    root: process.cwd(),
+  },
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.resolve.fallback = {
