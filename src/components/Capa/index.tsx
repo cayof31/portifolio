@@ -775,7 +775,7 @@ const Capa = ({ posts }: { posts: CapaPost[] }) => {
         </section>
         <section className="flex  items-end pt-14 justify-center pb-6 md:pb-8">
           <div className="mx-auto w-full max-w-7xl">
-            <p className="w-full max-w-none text-center text-[clamp(0.68rem,1.4vw,0.86rem)] uppercase tracking-[0.08em] text-[rgba(238,219,205,0.72)]">
+            <p className="w-full max-w-none text-center text-[clamp(0.68rem,1.4vw,0.86rem)] uppercase tracking-[0.08em] text-(--portfolio-muted)">
               &copy; {new Date().getFullYear()} - CAYO FELIPE.
             </p>
           </div>
