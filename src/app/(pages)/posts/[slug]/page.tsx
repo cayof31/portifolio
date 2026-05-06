@@ -104,7 +104,7 @@ export default async function PostPage({ params }: PostPageProps) {
   };
 
   return (
-    <main className="min-h-screen py-32">
+    <main className="min-h-screen px-5 py-32 md:px-12 lg:px-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd(articleJsonLd) }}
