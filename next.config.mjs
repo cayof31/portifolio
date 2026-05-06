@@ -5,7 +5,7 @@ import { createMDX } from 'fumadocs-mdx/next';
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
-  allowedDevOrigins: ["10.104.153.220"],
+  allowedDevOrigins: ["192.168.1.9"],
   turbopack: {
     root: process.cwd(),
   },
