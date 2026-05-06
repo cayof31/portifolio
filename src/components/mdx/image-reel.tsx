@@ -15,7 +15,7 @@ export function ImageReel({ images }: { images?: ImageReelItem[] }) {
   );
   const imageReelRef = React.useRef<HTMLDivElement | null>(null);
   const activeImage =
-    activeImageIndex !== null ? images?.[activeImageIndex] ?? null : null;
+    activeImageIndex !== null ? (images?.[activeImageIndex] ?? null) : null;
 
   const scrollImageReel = React.useCallback((direction: "left" | "right") => {
     const container = imageReelRef.current;
