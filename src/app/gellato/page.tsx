@@ -60,7 +60,7 @@ export default function GellatoProposalPage() {
         <div className="w-full rounded-[2.25rem] border border-white/70 bg-white/58 p-6 shadow-[0_28px_90px_rgba(136,77,24,0.18)] backdrop-blur-xl sm:p-10 md:p-14">
           <div className="mb-10 inline-flex items-center gap-2 rounded-full border border-[#f3bc78] bg-[#fff7ed]/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#a65818]">
             <IceCreamBowl className="h-4 w-4" />
-            Proposta Presencial
+            Proposta Comercial
           </div>
 
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
@@ -109,9 +109,36 @@ export default function GellatoProposalPage() {
               </p>
             </article>
           </div>
+          <div className="mt-12 grid gap-5 md:grid-cols-1 md:gap-10 items-center">
+            <article className="rounded-[2rem] sm:p-8 w-full border border-[#f1c08a] bg-[#fff7ec]/88 p-6 shadow-[0_16px_38px_rgba(143,83,28,0.1)]">
+              <p className="mb-4 text-xs font-black uppercase tracking-[0.32em] text-[#b76b10]">
+                A Visão
+              </p>
+              <p className="font-[var(--font-codec-pro)] text-2xl leading-10 text-[#3a2d18] sm:text-3xl">
+                Muito além de um programa de pontos, o app é o seu canal de
+                comunicação direto. Crie promoções exclusivas para datas
+                comemorativas, lance campanhas personalizadas e avise seus
+                clientes instantaneamente via notificação. Sua marca será
+                lembrada e estará presente no dia a dia do consumidor, a um
+                toque de distância.
+              </p>
+            </article>
+            <article className="rounded-[2rem] sm:p-8 w-full border border-[#f5d49d] bg-[#fffaf0]/88 p-6 shadow-[0_16px_38px_rgba(143,91,28,0.1)]">
+              <p className="mb-4 text-xs font-black uppercase tracking-[0.32em] text-[#b76b10]">
+                Resultado
+              </p>
+              <p className="font-[var(--font-codec-pro)] text-2xl leading-10 text-[#3a2d18] sm:text-3xl">
+                Recompensar quem já ama o seu gelato cria um efeito cascata.
+                Clientes fiéis e engajados com o aplicativo se sentem
+                valorizados e se tornam os maiores promotores da sua marca. O
+                resultado? Um aumento drástico nas indicações boca a boca, que
+                é, de longe, o marketing mais poderoso e rentável para o seu
+                estabelecimento.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
-
       <section className="relative z-10 flex min-h-dvh flex-col items-center justify-center px-4 py-14 sm:px-8">
         <div className="mb-8 max-w-2xl text-center">
           <p className="mb-3 text-xs font-black uppercase tracking-[0.36em] text-[#b45f16]">
