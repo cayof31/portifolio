@@ -16,7 +16,7 @@ const problemItems: ProblemItemType[] = [
   },
   {
     problem: 'Sem narrativa própria na web',
-    consequence: 'Falta de credibilidade e profissionalismo',
+    consequence: 'Falta de credibilidade e alcance limitado.',
     icon: '🔗',
   },
   {
