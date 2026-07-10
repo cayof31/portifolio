@@ -21,7 +21,7 @@ const galleryItems: GalleryItemType[] = [
     title: 'Cozinha Infantil Deluxe',
     category: 'Cozinhas',
     image:
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop',
+      'https://images.unsplash.com/photo-1722247479665-25424ea88b5d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     description: 'Cozinha completa em madeira natural com acabamento premium',
   },
   {
@@ -53,7 +53,7 @@ const galleryItems: GalleryItemType[] = [
     title: 'Cabana Infantil Aconchego',
     category: 'Casinhas',
     image:
-      'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=500&h=500&fit=crop',
+      'https://images.unsplash.com/photo-1592193365329-6ef1bdd10b87?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     description: 'Espaço de leitura e brincadeira aconchegante',
   },
   {
