@@ -9,6 +9,21 @@ const config = {
   turbopack: {
     root: process.cwd(),
   },
+  // Configuração de imagens para aceitar Unsplash
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },{
+        protocol: 'https',
+        hostname: 'unsplash.com',
+      },{
+        protocol: 'https',
+        hostname: 'xihamontessori.com',
+      },
+    ],
+  },
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.resolve.fallback = {
