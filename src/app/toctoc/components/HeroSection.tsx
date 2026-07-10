@@ -41,10 +41,10 @@ export function HeroSection() {
           <button
             onClick={() =>
               document
-                .getElementById('showcase')
+                .getElementById('problem')
                 ?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-[#C2185B] text-white rounded-xl font-semibold hover:bg-[#166B54] active:bg-[#0F5544] transition-all duration-200 shadow-md hover:shadow-xl hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-[#C2185B] text-white rounded-xl font-semibold hover:bg-[#8b1285] active:bg-[#680c63] transition-all duration-200 shadow-md hover:shadow-xl hover:-translate-y-0.5"
           >
             Veja a proposta
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

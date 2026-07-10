@@ -33,7 +33,7 @@ const problemItems: ProblemItemType[] = [
 
 export function ProblemSection() {
   return (
-    <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#FAFAFA]">
+    <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#FAFAFA]" id="problem">
       <div className="max-w-6xl mx-auto">
         {/* Título da seção - Material Typography */}
         <div className="text-center mb-16 sm:mb-20">

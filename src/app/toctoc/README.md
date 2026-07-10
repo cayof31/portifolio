@@ -29,12 +29,12 @@ toctoc/
 
 | Cor | Hex | Uso |
 |-----|-----|-----|
-| Verde Menta | `#A8E6CF` | Destaques, badges, borders |
+| rosa Menta | `#A8E6CF` | Destaques, badges, borders |
 | Areia | `#FFD3B6` | Elementos decorativos |
 | Coral Suave | `#FF9B7B` | Ênfase, CTAs secundárias |
-| Verde Escuro | `#C2185B` | Textos principais, headers |
-| Verde Médio | `#4A7C6E` | Subtítulos |
-| Verde Claro | `#6B8B84` | Descrições, textos longos |
+| rosa Escuro | `#C2185B` | Textos principais, headers |
+| rosa Médio | `#4A7C6E` | Subtítulos |
+| rosa Claro | `#6B8B84` | Descrições, textos longos |
 | Off-white | `#F7F3F0` | Fundo claro |
 | Azul Aqua | `#F0F8F7` | Fundo alternativo |
 
@@ -175,7 +175,7 @@ Todos os componentes seguem mobile-first:
 
 ### Trocar cores consistently:
 
-Exemplo para trocar verde menta por outra cor:
+Exemplo para trocar rosa menta por outra cor:
 ```bash
 # Terminal: substitua globalmente
 sed -i 's/#A8E6CF/#SEU_HEX_AQUI/g' components/*.tsx
