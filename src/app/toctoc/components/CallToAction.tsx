@@ -1,5 +1,7 @@
 'use client';
 
+import Link from "next/link";
+
 // CallToAction: Seção final com chamada clara para ação
 // Link direto para WhatsApp com mensagem personizada
 // Client component para animações e interatividade
@@ -78,9 +80,9 @@ export function CallToAction() {
           </p>
         </div>
         <div className="pt-4">
-          <p className="text-base text-[#666666] font-light">
+          <Link href="/micro-sass.com" className="text-2xl text-[#000000] font-light">
             Visitar meu Portfólio 
-          </p>
+          </Link>
         </div>
       </div>
     </section>
