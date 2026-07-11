@@ -130,7 +130,7 @@ toctoc/
 **Para customizar (MUITO IMPORTANTE):**
 - **Altere o número de WhatsApp:**
   ```ts
-  const whatsappNumber = '5565999999999'; // Seu número aqui!
+  const whatsappNumber = '5566992717650'; // Seu número aqui!
   ```
   Formato: País (55) + DDD + número sem símbolos
 
@@ -225,7 +225,7 @@ https://wa.me/{PAÍS}{DDD}{NÚMERO}?text={MENSAGEM_CODIFICADA}
 
 **Exemplo Brasil:**
 ```
-https://wa.me/5565999999999?text=Olá!
+https://wa.me/5566992717650?text=Olá!
 ```
 
 ---

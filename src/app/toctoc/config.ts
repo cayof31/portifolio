@@ -10,7 +10,7 @@ export const TOCTOC_CONFIG = {
   company: {
     name: 'Toc toc for kids',
     tagline: 'Casinha e Cozinhas infantis',
-    whatsapp: '5565992717650', //  SUBSTITUIR PELO NÚMERO REAL
+    whatsapp: '5566992717650', //  SUBSTITUIR PELO NÚMERO REAL
   },
 
   // Paleta de cores Material Design 3

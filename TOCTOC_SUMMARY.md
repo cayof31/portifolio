@@ -99,16 +99,16 @@ FOOTER:    Mensagem final acolhedora
 **Arquivo 1:** `src/app/toctoc/components/CallToAction.tsx` ~ linha 14
 
 ```tsx
-const whatsappNumber = '5565991234567'; // ← Seu número aqui
+const whatsappNumber = '5566992717650'; // ← Seu número aqui
 ```
 
 **Arquivo 2:** `src/app/toctoc/config.ts` ~ linha 11
 
 ```ts
-whatsapp: '5565991234567', // ← Mesmo número
+whatsapp: '5566992717650', // ← Mesmo número
 ```
 
-Formato: `55` (Brasil) + DDD (ex: `65`) + Número
+Formato: `55` (Brasil) + DDD (ex: `66`) + Número
 
 ### ✅ Passo 2: Testar
 

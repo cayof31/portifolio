@@ -6,7 +6,7 @@
 
 export function CallToAction() {
   // Número do WhatsApp (sem símbolos)
-  const whatsappNumber = '5565992717650'; 
+  const whatsappNumber = '5566992717650'; 
   
   // Mensagem personalizada para a empresa
   const message = encodeURIComponent(
@@ -75,6 +75,11 @@ export function CallToAction() {
         <div className="pt-8 border-t border-[#E8E8E8]">
           <p className="text-base text-[#666666] font-light">
             Pronto para transformar criatividade em realidade digital? 
+          </p>
+        </div>
+        <div className="pt-4">
+          <p className="text-base text-[#666666] font-light">
+            Visitar meu Portfólio 
           </p>
         </div>
       </div>
