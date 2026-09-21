@@ -97,13 +97,6 @@ const sections: PortfolioSection[] = [
         link: "http://memoriaeancestralidade.com.br",
       },
       {
-        title: "Micro-Sass",
-        description:
-          "Uma coleção de Sass feita para demonstrar minhas habilidades e de quebra tirar um extra.",
-        stacks: ["React", "TypeScript", "Next.js", "Sass", "Node.js"],
-        link: "https://github.com/cayof31/micro-sass",
-      },
-      {
         title: "AlertaUFMT",
         description:
           "Sistema de monitoramento de infraestrutura universitária utilizando Geoprocessamento (PostGIS), React Native e Crowdsourcing. TCC Bacharelado em Ciência da Computação - UFMT.",
