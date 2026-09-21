@@ -76,46 +76,18 @@ const sections: PortfolioSection[] = [
         link: "https://extract.ibagtech.com.br",
       },
       {
-        title: "Orceasy",
-        description:
-          "Micro-SaaS para freelancer montar orçamento e proposta com IA, PDF e link compartilhável. Login, planos e dashboard para acompanhar o envio.",
-        stacks: ["Next.js", "TypeScript", "Supabase"],
-        link: "https://github.com/cayof31/orceasy",
-      },
-      {
         title: "Studio Suzana Loroff",
         description:
-          "Segundo modelo de site para arquiteta. Home com retrato e escritório, feito em Astro, com as fotos servidas por Cloudflare R2 e Worker.",
+          "Modelo de site para arquiteta, em Astro. É um dos exemplos que eu mando para o escritório que quer fechar o site com a IbagTech.",
         stacks: ["Astro", "TypeScript", "Tailwind"],
-        link: "https://github.com/cayof31/arquiteto-two",
+        link: "https://arquiteto-two.ibagtech.com.br",
       },
       {
         title: "Studio Vértice",
         description:
-          "Portfólio editorial para arquiteto, no ar. Grid de obras, ficha de projeto e SEO pensado para o escritório apresentar o trabalho.",
+          "Modelo de portfólio editorial para arquiteto, em Next.js. O outro exemplo que eu apresento na conversa de quem quer o site do escritório com a IbagTech.",
         stacks: ["Next.js", "TypeScript"],
         link: "https://arquiteto.ibagtech.com.br",
-      },
-      {
-        title: "CorrigeENEM",
-        description:
-          "Produto para quem quer subir a nota da redação do ENEM. App com conta, correção e a meta de passar dos 900.",
-        stacks: ["Next.js", "TypeScript", "Prisma", "Supabase"],
-        link: "https://github.com/cayof31/corrige_enem",
-      },
-      {
-        title: "Toc toc for kids",
-        description:
-          "Proposta digital para a marcenaria infantil: catálogo no celular, galeria das peças e uma presença que cabe no WhatsApp do cliente.",
-        stacks: ["React", "TypeScript", "Next.js"],
-        link: "https://micro-sass.com/toctoc",
-      },
-      {
-        title: "Gellato",
-        description:
-          "Proposta de fidelidade para a sorveteria: pontos, recompensas e um app de relacionamento em volta do pedido.",
-        stacks: ["React", "TypeScript", "Next.js"],
-        link: "https://micro-sass.com/gellato",
       },
       {
         title: "Memoria & Ancestralidade",
