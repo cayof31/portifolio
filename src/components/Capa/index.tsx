@@ -62,6 +62,62 @@ const sections: PortfolioSection[] = [
       "Colecao de trabalhos em web apps e experiencias interativas, priorizando clareza, identidade e resultados de negocio.",
     projects: [
       {
+        title: "IbagTech",
+        description:
+          "A software house. Site da marca em que sites, sistemas e apps sob medida saem do papel: do MVP ao deploy, com design e engenharia no mesmo lugar.",
+        stacks: ["React", "TypeScript", "Next.js"],
+        link: "https://ibagtech.com.br",
+      },
+      {
+        title: "Extract Design",
+        description:
+          "SaaS que lê um site público e devolve um DESIGN.md para agentes de IA. Motor híbrido com Cheerio e Playwright, preview e download dos tokens.",
+        stacks: ["Next.js", "TypeScript", "Node.js", "Playwright"],
+        link: "https://extract.ibagtech.com.br",
+      },
+      {
+        title: "Orceasy",
+        description:
+          "Micro-SaaS para freelancer montar orçamento e proposta com IA, PDF e link compartilhável. Login, planos e dashboard para acompanhar o envio.",
+        stacks: ["Next.js", "TypeScript", "Supabase"],
+        link: "https://github.com/cayof31/orceasy",
+      },
+      {
+        title: "Studio Suzana Loroff",
+        description:
+          "Segundo modelo de site para arquiteta. Home com retrato e escritório, feito em Astro, com as fotos servidas por Cloudflare R2 e Worker.",
+        stacks: ["Astro", "TypeScript", "Tailwind"],
+        link: "https://github.com/cayof31/arquiteto-two",
+      },
+      {
+        title: "Studio Vértice",
+        description:
+          "Portfólio editorial para arquiteto, no ar. Grid de obras, ficha de projeto e SEO pensado para o escritório apresentar o trabalho.",
+        stacks: ["Next.js", "TypeScript"],
+        link: "https://arquiteto.ibagtech.com.br",
+      },
+      {
+        title: "CorrigeENEM",
+        description:
+          "Produto para quem quer subir a nota da redação do ENEM. App com conta, correção e a meta de passar dos 900.",
+        stacks: ["Next.js", "TypeScript", "Prisma", "Supabase"],
+        link: "https://github.com/cayof31/corrige_enem",
+      },
+      {
+        title: "Toc toc for kids",
+        description:
+          "Proposta digital para a marcenaria infantil: catálogo no celular, galeria das peças e uma presença que cabe no WhatsApp do cliente.",
+        stacks: ["React", "TypeScript", "Next.js"],
+        link: "https://micro-sass.com/toctoc",
+      },
+      {
+        title: "Gellato",
+        description:
+          "Proposta de fidelidade para a sorveteria: pontos, recompensas e um app de relacionamento em volta do pedido.",
+        stacks: ["React", "TypeScript", "Next.js"],
+        link: "https://micro-sass.com/gellato",
+      },
+      {
         title: "Memoria & Ancestralidade",
         description:
           "Site institucional para o projeto de pesquisa Memória & Ancestralidade, que tem como objetivo preservar e compartilhar as histórias e tradições das comunidades indígenas brasileiras.",
