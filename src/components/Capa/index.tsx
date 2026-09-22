@@ -62,18 +62,39 @@ const sections: PortfolioSection[] = [
       "Colecao de trabalhos em web apps e experiencias interativas, priorizando clareza, identidade e resultados de negocio.",
     projects: [
       {
+        title: "IbagTech",
+        description:
+          "A software house. Site da marca em que sites, sistemas e apps sob medida saem do papel: do MVP ao deploy, com design e engenharia no mesmo lugar.",
+        stacks: ["React", "TypeScript", "Next.js"],
+        link: "https://ibagtech.com.br",
+      },
+      {
+        title: "Extract Design",
+        description:
+          "SaaS que lê um site público e devolve um DESIGN.md para agentes de IA. Motor híbrido com Cheerio e Playwright, preview e download dos tokens.",
+        stacks: ["Next.js", "TypeScript", "Node.js", "Playwright"],
+        link: "https://extract.ibagtech.com.br",
+      },
+      {
+        title: "Studio Suzana Loroff",
+        description:
+          "Modelo de site para arquiteta, em Astro. É um dos exemplos que eu mando para o escritório que quer fechar o site com a IbagTech.",
+        stacks: ["Astro", "TypeScript", "Tailwind"],
+        link: "https://arquiteto-two.ibagtech.com.br",
+      },
+      {
+        title: "Studio Vértice",
+        description:
+          "Modelo de portfólio editorial para arquiteto, em Next.js. O outro exemplo que eu apresento na conversa de quem quer o site do escritório com a IbagTech.",
+        stacks: ["Next.js", "TypeScript"],
+        link: "https://arquiteto.ibagtech.com.br",
+      },
+      {
         title: "Memoria & Ancestralidade",
         description:
           "Site institucional para o projeto de pesquisa Memória & Ancestralidade, que tem como objetivo preservar e compartilhar as histórias e tradições das comunidades indígenas brasileiras.",
         stacks: ["React", "TypeScript", "Next.js"],
         link: "http://memoriaeancestralidade.com.br",
-      },
-      {
-        title: "Micro-Sass",
-        description:
-          "Uma coleção de Sass feita para demonstrar minhas habilidades e de quebra tirar um extra.",
-        stacks: ["React", "TypeScript", "Next.js", "Sass", "Node.js"],
-        link: "https://github.com/cayof31/micro-sass",
       },
       {
         title: "AlertaUFMT",
